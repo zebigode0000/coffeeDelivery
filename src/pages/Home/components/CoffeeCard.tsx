@@ -9,6 +9,7 @@ interface CoffeeCardProps {
 export function CoffeeCard({coffee}:CoffeeCardProps) {
 
 const [count, setCount] = useState(1)
+const [addItems, setAddItem] = useState(0)
 
 function handleSubCount () {
     if(count > 0) {
@@ -21,6 +22,12 @@ function handleSumCount () {
 }
 const coffeePrice: number = 9.90
 const totalPrice = coffeePrice * count
+
+function handleAddItemCart () {
+  if(count > 0) {
+    setAddItem(addItem + 1)
+  }
+}
 
     return (
   
@@ -83,6 +90,7 @@ const totalPrice = coffeePrice * count
         
         <button 
           type="button" 
+          onClick={handleAddItemCart}
           className="p-2 bg-purple-dark hover:bg-purple text-white rounded-md transition-colors h-9 w-9 flex items-center justify-center cursor-pointer"
         >
           <ShoppingCartIcon/>
