@@ -1,0 +1,29 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+@theme {
+  /* Cores do Produto (Destaques) */
+  --color-yellow-dark: #C47F17;
+  --color-yellow: #DBAC2C;
+  --color-yellow-light: #F1E9C9;
+  
+  --color-purple-dark: #4B2995;
+  --color-purple: #8047F8;
+  --color-purple-light: #EBE5F9;
+
+  /* Cores de Base (Textos, Fundos e Elementos) */
+  --color-base-title: #272221;
+  --color-base-subtitle: #403937;
+  --color-base-text: #574F4D;
+  --color-base-label: #8D8686;
+  --color-base-hover: #D7D5D5;
+  --color-base-button: #E6E5E5;
+  --color-base-input: #EDEDED;
+  --color-base-card: #F3F2F2;
+  --color-background: #FAFAFA;
+
+  --font-sans: 'Roboto', sans-serif;
+  --font-title: 'Baloo 2', cursive;
+}
