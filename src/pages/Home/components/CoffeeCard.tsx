@@ -1,5 +1,6 @@
 import { ShoppingCartIcon } from '@phosphor-icons/react/dist/ssr'
-import { useState } from 'react'
+import { useState, useContext } from 'react'
+import { CoffeeCartContext  } from '../../../contexts/Contexts'
 import type { Coffee } from '../../../Types'
 
 interface CoffeeCardProps {
@@ -8,26 +9,27 @@ interface CoffeeCardProps {
 
 export function CoffeeCard({coffee}:CoffeeCardProps) {
 
-const [count, setCount] = useState(1)
-const [addItems, setAddItem] = useState(0)
+const [count, setCount] = useState(1);
 
-function handleSubCount () {
-    if(count > 0) {
-        setCount(count - 1)
-    } 
+  function handleSubCount() {
+    if (count > 0) {
+      setCount(count - 1);
+    }
+  }
+  function handleSumCount() {
+    setCount((state) => state + 1);
+  }
+
+const context = useContext(CoffeeCartContext);
+
+if (!context) {
+  throw new Error("CoffeeCard deve ser usado dentro de um CoffeeCartProvider");
 }
-function handleSumCount () {
-    setCount(state => state + 1)
-    
-}
+
+const { handleAddCart } = context;
+
 const coffeePrice: number = 9.90
 const totalPrice = coffeePrice * count
-
-function handleAddItemCart () {
-  if(count > 0) {
-    setAddItem(addItem + 1)
-  }
-}
 
     return (
   
@@ -90,7 +92,7 @@ function handleAddItemCart () {
         
         <button 
           type="button" 
-          onClick={handleAddItemCart}
+          onClick={() => handleAddCart(count)}
           className="p-2 bg-purple-dark hover:bg-purple text-white rounded-md transition-colors h-9 w-9 flex items-center justify-center cursor-pointer"
         >
           <ShoppingCartIcon/>

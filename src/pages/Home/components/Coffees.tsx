@@ -6,6 +6,7 @@ import Coffee4 from '../../../assets/Coffee4.png'
 import type { Coffee } from '../../../Types'
 
 export function Coffees() {
+
     const coffeeList: Coffee[] = [
     {
         id: 1,
@@ -33,9 +34,8 @@ export function Coffees() {
         name: 'Expresso Gelado',
         description: 'Bebida preparada com café expresso e cubos de gelo'
     }, 
-
     ]  
-
+    
     return(
         <div className='w-full'>
             <div>

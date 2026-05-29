@@ -1,6 +1,8 @@
 import { useState } from "react";
 import Coffee1 from "../../../assets/Coffee1.png";
 import { TrashIcon } from "@phosphor-icons/react";
+import { CoffeeCartContext } from '../../../contexts/Contexts'
+import { useContext } from "react";
 
 export function Conformation() {
   const [count, setCount] = useState(1);
@@ -20,7 +22,13 @@ export function Conformation() {
   const totalPriceWithouDelivery = coffeePrice * count
   const totalPrice = (coffeePrice * count) + delivery
   
-
+  const context = useContext(CoffeeCartContext);
+  
+  if (!context) {
+    throw new Error("CoffeeCard deve ser usado dentro de um CoffeeCartProvider");
+  }
+  
+  const { coffeeNumberCart } = context;
 
   return (
     <div className="w-full data-container">
@@ -58,7 +66,7 @@ export function Conformation() {
                     -
                   </button>
                   <span className="font-sans text-base text-base-title">
-                    {count}
+                    {coffeeNumberCart}
                   </span>
                   <button
                     type="button"
