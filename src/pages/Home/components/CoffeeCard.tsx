@@ -9,17 +9,6 @@ interface CoffeeCardProps {
 
 export function CoffeeCard({coffee}:CoffeeCardProps) {
 
-const [count, setCount] = useState(1);
-
-  function handleSubCount() {
-    if (count > 0) {
-      setCount(count - 1);
-    }
-  }
-  function handleSumCount() {
-    setCount((state) => state + 1);
-  }
-
 const context = useContext(CoffeeCartContext);
 
 if (!context) {
@@ -27,9 +16,23 @@ if (!context) {
 }
 
 const { handleAddCart } = context;
+const [count, setCount] = useState(1);
+
 
 const coffeePrice: number = 9.90
 const totalPrice = coffeePrice * count
+
+
+
+  function handleSubCount() {
+    if (count > 0) {
+      setCount((state) => state - 1);
+    }
+  }
+
+  function handleSumCount() {
+    setCount((state) => state + 1);
+  }
 
     return (
   
@@ -92,7 +95,7 @@ const totalPrice = coffeePrice * count
         
         <button 
           type="button" 
-          onClick={() => handleAddCart(count)}
+          onClick={() => handleAddCart(coffee, count)}
           className="p-2 bg-purple-dark hover:bg-purple text-white rounded-md transition-colors h-9 w-9 flex items-center justify-center cursor-pointer"
         >
           <ShoppingCartIcon/>
