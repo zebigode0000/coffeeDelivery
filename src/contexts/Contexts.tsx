@@ -6,6 +6,7 @@ type CartContextData = {
   handleAddCart: (addItem: Coffee, quantity: number) => void;
   addCartItem: CartItem[];
   handleQuantityCoffee: (id: number, type: "increase" | "decrease") => void
+  handleRemoveCartItem: (id: number) => void
 };
 type CartProviderProps = {
   children: ReactNode;
@@ -51,21 +52,32 @@ export const CoffeeCartProvider = ({ children }: CartProviderProps) => {
     console.log("Minha bandeja de cafés atualizada:", addCartItem);
   }, [addCartItem]);
 
-  function handleQuantityCoffee (id: number, type: 'increase' | 'decrease') {
-    addCartItem.map((item) => { 
-      if(item.id === id) {
-        if(type === 'increase'){
-         return item.quantity + 1
+
+  function handleQuantityCoffee(id: number, type: 'increase' | 'decrease') {
+  setAddCartItem((state) => {
+    return state.map((item) => {
+      if (item.id === id) {
+        if (type === 'increase') {
+          return { ...item, quantity: item.quantity + 1 }
         } else {
-         return item.quantity - 1
+          return { ...item, quantity: item.quantity - 1 }
         }
       }
+      return item
+    })
   })
-  }
+}
+
+function handleRemoveCartItem (id: number) {
+    setAddCartItem((state) => { 
+     return state.filter((item) => 
+        item.id !== id)
+    })
+}
 
   return (
     <CoffeeCartContext.Provider
-      value={{ handleAddCart, addCartItem, coffeeNumberCart, handleQuantityCoffee }}
+      value={{ handleAddCart, addCartItem, coffeeNumberCart, handleQuantityCoffee, handleRemoveCartItem }}
     >
       {children}
     </CoffeeCartContext.Provider>

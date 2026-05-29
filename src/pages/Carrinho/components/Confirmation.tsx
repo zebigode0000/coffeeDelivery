@@ -18,7 +18,7 @@ export function Conformation() {
     throw new Error("CoffeeCard deve ser usado dentro de um CoffeeCartProvider");
   }
   
-  const { addCartItem, handleQuantityCoffee } = context;
+  const { addCartItem, handleQuantityCoffee, handleRemoveCartItem } = context;
 
   const totalPrice = addCartItem.reduce((prev, item) => {
     return prev + (item.quantity * coffeePrice)
@@ -54,8 +54,9 @@ export function Conformation() {
                     <div className="flex items-center justify-between gap-1 bg-base-button p-2 rounded-md w-[72px] h-9">
                       <button
                         type="button"
-                        className="text-purple hover:text-purple-dark transition-colors font-bold text-lg cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="text-purple hover:text-purple-dark transition-colors font-bold text-lg cursor-pointer disabled:opacity-50 disabled:cursor-default"
                         onClick={() => handleQuantityCoffee(item.id, 'decrease')}
+                        disabled={item.quantity === 0}
                         
                       >
                         -
@@ -75,6 +76,7 @@ export function Conformation() {
                     <button 
                       type="button"
                       className="flex items-center justify-center gap-1 bg-base-button hover:bg-base-hover text-base-text p-2 rounded-md h-9 px-2 text-xs uppercase transition-colors cursor-pointer"
+                      onClick={() => handleRemoveCartItem(item.id)}
                     >
                       <TrashIcon size={16} className="text-purple" />
                       remover
@@ -108,7 +110,8 @@ export function Conformation() {
             </div>
         </div>
         
-        <button className="uppercase font-semibold bg-yellow text-white w-full p-4 rounded-md hover:bg-yellow-dark transition-colors cursor-pointer">
+        <button className="uppercase font-semibold bg-yellow text-white w-full p-4 rounded-md hover:bg-yellow-dark transition-colors cursor-pointer disabled:cursor-not-allowed"
+        disabled={TotalItens === 0}>
           confirmar pedido
         </button>
       </div>
