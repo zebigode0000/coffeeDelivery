@@ -23,17 +23,23 @@ export const CoffeeCartProvider = ({ children }: CartProviderProps) => {
 
   function handleAddCart(chosenItem: Coffee, quantity: number) {
     setAddCartItem((state) => {
-      const itemIndex = state.findIndex((item) => item.id === chosenItem.id);
+    const itemAlreadyExists = state.some((item) => 
+       item.id === chosenItem.id
+    )
 
-      if (itemIndex >= 0) {
-        const newCart = [...state];
-        newCart[itemIndex].quantity += quantity;
+    if(itemAlreadyExists) {
+        return state.map((item) => {
+        if(item.id === chosenItem.id) {
+          return {...item, quantity: item.quantity + quantity}
+        } 
+          return item       
 
-        return newCart;
-      }
-      return [...state, { ...chosenItem, quantity }];
-    });
-  }
+      })
+    }
+    else {
+      return [...state, {...chosenItem, quantity }]
+    }
+   })}
 
 
   const coffeeNumberCart = addCartItem.reduce(

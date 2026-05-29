@@ -21,7 +21,7 @@ export function Conformation() {
   const { addCartItem, handleQuantityCoffee } = context;
 
   const totalPrice = addCartItem.reduce((prev, item) => {
-    return prev + (item.quantity * coffeePrice) + delivery
+    return prev + (item.quantity * coffeePrice)
   }, 0)
 
   const TotalItens = addCartItem.reduce((prev, item) => {
@@ -104,7 +104,7 @@ export function Conformation() {
             <div className="text-right flex flex-col gap-2">
                 <p>{TotalItens}</p>
                 <p>R$&nbsp; 3,50</p>
-                <p className="font-bold text-xl text-base-subtitle">R$&nbsp; {totalPrice.toFixed(2)}</p>
+                <p className="font-bold text-xl text-base-subtitle">R$&nbsp; {(delivery + totalPrice).toFixed(2)}</p>
             </div>
         </div>
         
