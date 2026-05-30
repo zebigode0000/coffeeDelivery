@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { TrashIcon } from "@phosphor-icons/react";
 import { CoffeeCartContext } from '../../../contexts/Contexts'
 import { useContext } from "react";
@@ -110,7 +109,7 @@ export function Conformation() {
             </div>
         </div>
         
-        <button className="uppercase font-semibold bg-yellow text-white w-full p-4 rounded-md hover:bg-yellow-dark transition-colors cursor-pointer disabled:cursor-not-allowed"
+        <button type="submit" form="form-checkout" className="uppercase font-semibold bg-yellow text-white w-full p-4 rounded-md hover:bg-yellow-dark transition-colors cursor-pointer disabled:cursor-not-allowed"
         disabled={TotalItens === 0}>
           confirmar pedido
         </button>

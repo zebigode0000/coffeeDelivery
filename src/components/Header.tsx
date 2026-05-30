@@ -17,9 +17,9 @@ const { coffeeNumberCart } = context;
 
   return (
     <div className="w-full flex items-center justify-between">
-      <div>
+      <NavLink to="/">
         <img src={Logo} alt="" />
-      </div>
+      </NavLink>
       <div className="flex items-center gap-2 font-sans">
         <div className="flex items-center text-purple bg-purple-light p-1 rounded-sm">
           <MapPinIcon size={20} />
