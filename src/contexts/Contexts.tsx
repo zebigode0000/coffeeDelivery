@@ -20,7 +20,14 @@ export const CoffeeCartContext = createContext<CartContextData | undefined>(
 );
 
 export const CoffeeCartProvider = ({ children }: CartProviderProps) => {
-  const [addCartItem, setAddCartItem] = useState<CartItem[]>([]);
+  const [addCartItem, setAddCartItem] = useState<CartItem[]>(() => {
+    const storageStateJSON = localStorage.getItem('@timer-estudo:cart-item-1.0.0')
+
+    if(storageStateJSON) {
+      return JSON.parse(storageStateJSON)
+    }
+    return []
+  });
 
   function handleAddCart(chosenItem: Coffee, quantity: number) {
     setAddCartItem((state) => {
@@ -48,10 +55,12 @@ export const CoffeeCartProvider = ({ children }: CartProviderProps) => {
     0,
   );
 
-  useEffect(() => {
-    console.log("Minha bandeja de cafés atualizada:", addCartItem);
-  }, [addCartItem]);
 
+  useEffect(() => {
+  const stateJSON = JSON.stringify(addCartItem)
+
+  localStorage.setItem('@timer-estudo:cart-item-1.0.0', stateJSON)
+ }, [addCartItem])
 
   function handleQuantityCoffee(id: number, type: 'increase' | 'decrease') {
   setAddCartItem((state) => {

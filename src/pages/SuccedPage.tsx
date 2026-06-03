@@ -1,7 +1,31 @@
 import { CurrencyDollarIcon, MapPinIcon, TimerIcon } from "@phosphor-icons/react";
 import SuccedImage from '../assets/SuccedImage.png'
+import { useLocation } from "react-router-dom";
+
+interface LocationState {
+  state: {
+    cep: string;
+    address: string;
+    number: string;
+    complement?: string;
+    neighborhood: string;
+    city: string;
+    paymentMethod: 'credit' | 'debit' | 'cash';
+  }
+}
 
 export function SuccedPage() {
+    const location = useLocation() as LocationState;
+    const orderData = location.state;
+
+    
+
+    const paymentMethodLabels = {
+    credit: "Cartão de Crédito",
+    debit: "Cartão de Débito",
+    cash: "Dinheiro"
+  };
+
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 pt-20 gap-4 ">
             <div>
@@ -14,7 +38,7 @@ export function SuccedPage() {
                             <MapPinIcon className="text-white  flex justify-center items-center" size={16}/>
                         </span>
                         <div className="leading-none">
-                            <p>Entrega em <span className="font-bold">Rua João Daniel Martinelli, 102</span> <br /> Farrapos - Porto Alegre, RS</p>
+                            <p>Entrega em <span className="font-bold">{orderData.address}, {orderData.number}</span><span className="font-bold"> - {orderData.neighborhood}, {orderData.city}</span></p>
                         </div>
                     </div>
                     <div className="flex items-center gap-4">
@@ -30,7 +54,7 @@ export function SuccedPage() {
                             <CurrencyDollarIcon className="text-white flex justify-center items-center" size={16}/>
                         </span>
                         <div className="leading-none">
-                            <p>Pagamento na entrega <br /> <span className="font-bold">Cartão de Crédito</span> </p>
+                            <p>Pagamento na entrega <br /> <span className="font-bold">{paymentMethodLabels[orderData.paymentMethod]}</span> </p>
                         </div>
                     </div>
                 </div>

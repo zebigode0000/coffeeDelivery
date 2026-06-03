@@ -41,7 +41,7 @@ export function Coffees() {
             <div>
                 <h1 className="font-title text-2xl font-semibold">Nossos Cafés</h1>
             </div>
-            <div className='grid grid-cols-4 w-full gap-4 pt-20'>
+            <div className='grid grid-cols-1 md:grid-cols-4 w-full gap-10 pt-20'>
                 {coffeeList.map(card => (
                 <CoffeeCard 
                     key={card.id} 

@@ -3,6 +3,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
 
+@layer components {
+  .payments {
+    @apply flex items-center justify-center bg-base-button p-4 uppercase text-xs rounded-md gap-2 border border-transparent cursor-pointer hover:bg-purple-light select-none has-[:checked]:border-purple has-[:checked]:bg-purple-light
+  }
+}
+
 @theme {
   /* Cores do Produto (Destaques) */
   --color-yellow-dark: #C47F17;
@@ -25,5 +31,5 @@
   --color-background: #FAFAFA;
 
   --font-sans: 'Roboto', sans-serif;
-  --font-title: 'Baloo 2', cursive;
+  --font-title: 'Roboto', sans-serif;
 }

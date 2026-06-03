@@ -10,7 +10,7 @@ import { Coffees } from "./components/Coffees";
 export function Home() {
   return (
     <>
-    <div className="grid grid-cols-2 mt-30 ">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mt-20 ">
       <div className="flex flex-col gap-16">
         <div className="flex flex-col gap-4">
             <h1 className="font-title text-4xl text-base-title">

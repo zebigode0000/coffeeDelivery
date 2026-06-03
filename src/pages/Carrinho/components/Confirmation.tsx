@@ -40,7 +40,7 @@ export function Conformation() {
           {addCartItem.map((item) => ( 
             <div key={item.id} className="flex w-full justify-between items-center gap-5">
               
-              {/* Lado esquerdo: Foto, Nome e Botões */}
+        
               <div className="flex items-center gap-5">
                 <img src={item.img} className="w-16 h-16 object-contain" alt={item.name} />
                 
@@ -50,7 +50,7 @@ export function Conformation() {
                   </p>
                   
                   <div className="flex items-center gap-2">
-                    <div className="flex items-center justify-between gap-1 bg-base-button p-2 rounded-md w-[72px] h-9">
+                    <div className="flex items-center justify-between gap-1 bg-base-button p-2 rounded-md w-20 h-9">
                       <button
                         type="button"
                         className="text-purple hover:text-purple-dark transition-colors font-bold text-lg cursor-pointer disabled:opacity-50 disabled:cursor-default"
@@ -85,7 +85,7 @@ export function Conformation() {
               </div>
 
               
-              <div className="text-right min-w-[80px]">
+              <div className="hidden md:block  text-right min-w-20">
                 <p className="font-sans font-bold text-base-text text-base">
                   R$&nbsp;{(item.quantity * coffeePrice).toFixed(2)}
                 </p>
